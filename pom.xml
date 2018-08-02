@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mmna</groupId>
+  <artifactId>chargers</artifactId>
+  <version>1.0.0</version>
+  <name>chargers</name>
+  
+  <packaging>jar</packaging>
+  
+   <properties>
+     <java.version>1.8</java.version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <parent>
+    <groupId>com.mmna</groupId>
+    <artifactId>MitsubishiCars</artifactId>
+    <version>2.0.1</version>
+  </parent>
+  
+   <dependencyManagement>
+	 <dependencies>
+	  <dependency>
+	   <groupId>org.springframework.boot</groupId>
+	   <artifactId>spring-boot-dependencies</artifactId>
+	   <version>1.4.2.RELEASE</version>
+	   <type>pom</type>
+	   <scope>import</scope>
+	  </dependency>
+	 </dependencies>
+	</dependencyManagement>
+  
+  <dependencies>
+
+	   <!-- spring-boot -->
+	    <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-web-services</artifactId>
+	    </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-security</artifactId>
+            <version>2.2.4.RELEASE</version>
+        </dependency>
+        
+         <dependency>
+            <groupId>org.apache.ws.security</groupId>
+            <artifactId>wss4j</artifactId>
+            <version>1.6.19</version>
+        </dependency>
+
+		     
+	     <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.2</version>
+		</dependency>
+					     
+    </dependencies>
+    
+    <build>
+        <plugins>
+         <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.9.RELEASE</version>
+            </plugin>
+            <!-- tag::wsdl[] -->
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.12.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <generatePackage>com.mmna.evchargers.wsdl</generatePackage>
+                    <schemas>
+                        <schema>
+                            <url>https://webservices.chargepoint.com/cp_api_5.0.wsdl</url>
+                        </schema>
+                    </schemas>
+                </configuration>
+            </plugin>
+            <!-- end::wsdl[] -->
+        </plugins>
+    </build>
+  
+</project>
