@@ -3,4 +3,9 @@ There is a lot of information regarding consuming a SOAP service with java. But 
 
 So using spring boot i did a pov project that consumes a real SOAP service which is SOAP protected. At least in a easy way where we dont have to construct manually the SOAP headers.
 
+
 Cutting to the chase, what we need to use is a Wss4jSecurityInterceptor that "injects" the credential to the request when we want to consume the service.
+
+If you want to have more details of how consume a soap service i recommend this detail guide (this is the guide that i followed at the time)
+
+https://spring.io/guides/gs/consuming-web-service/
